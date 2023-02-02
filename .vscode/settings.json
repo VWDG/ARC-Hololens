@@ -1,0 +1,9 @@
+{
+	"files.exclude": {
+		"**/.git": true,
+	},
+	"python.analysis.typeCheckingMode": "strict",
+	"files.associations": {
+		"temp": "cpp"
+	}
+}
