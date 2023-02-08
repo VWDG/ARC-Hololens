@@ -242,6 +242,7 @@ def create_project(id: str, frames: int, cam_width: int, cam_height: int, depth_
 	json.dump(project, file)
 	file.close()
 
+	#create additional empty files because replay software requires them
 	for name in ["anchor", "env_probe", "lightestimation", "plane_anchor"]:
 		file = open(out_path + "/" + name + ".json", "w")
 		file.close()
