@@ -1,6 +1,6 @@
 #Config
 
-name: str = "HoloFull"
+name: str = "HoloPart"
 
 #End of Config
 
@@ -11,7 +11,6 @@ import tarfile
 import cv2
 import subprocess
 import json
-import numba
 
 from typing import *
 from numpy.typing import *
@@ -52,7 +51,16 @@ def load_lut(lut_filename: str) ->NDArray[np.float32]:
 def load_extrinsics(extrinsics_path: str) -> NDArray[np.float32]:
 	return np.loadtxt(str(extrinsics_path), delimiter=',').astype(np.float32).reshape((4, 4))
 
-@numba.njit
+
+try:
+    import numba
+    decorator = numba.njit
+except ImportError as e:
+    print("numba not avaible, conversion will be a lot slower")
+    def decorator(f):
+	    return f
+
+@decorator
 def project_points(points: NDArray[np.float32], focal_x: float, focal_y: float, o_x: float, o_y: float, width: int, height: float, result: NDArray[np.float32]):
 	for i in range(points.shape[0]):
 		x, y, z = points[i]
@@ -161,10 +169,8 @@ def create_depth() -> Tuple[str, int, int, int, int, int]:
 		width = cam_width
 		intrinsic = cam_intrinsics
 
-		#result = np.zeros((height, width), dtype=np.float32)
-		#project_points(points, focal_x, focal_y, o_x, o_y, width, height, result)
-		result = np.zeros((cam_height, cam_width), dtype=np.float32)
-		project_points(points, cam_focal_x, cam_focal_y, principal_point_x, principal_point_y, cam_width, cam_height, result)
+		result = np.zeros((height, width), dtype=np.float32)
+		project_points(points, focal_x, focal_y, o_x, o_y, width, height, result)
 
 		folder = out_path + "/" + str(count)
 		os.mkdir(folder)
