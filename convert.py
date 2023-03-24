@@ -10,8 +10,6 @@ import sys
 from typing import *
 from numpy.typing import *
 
-DEPTH_SCALING_FACTOR = 5000
-
 def main() -> None:
 	global name, path, out_path
 	if len(sys.argv) < 2:

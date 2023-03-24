@@ -2,5 +2,4 @@
 	"files.exclude": {
 		"**/.git": true,
 	},
-	"python.analysis.typeCheckingMode": "strict",
 }
