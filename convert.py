@@ -1,9 +1,3 @@
-#Config
-
-name: str = "HoloPart"
-
-#End of Config
-
 import os
 import numpy as np
 import shutil
@@ -11,16 +5,22 @@ import tarfile
 import cv2
 import subprocess
 import json
+import sys
 
 from typing import *
 from numpy.typing import *
 
 DEPTH_SCALING_FACTOR = 5000
 
-path = "Recordings/" + name
-out_path = "Results/" + name
-
 def main() -> None:
+	global name, path, out_path
+	if len(sys.argv) < 2:
+		print("please provide path to recording as a command line argument")
+		return
+	name = sys.argv[1]
+	path =  name
+	out_path = name + "-result"
+
 	if (os.path.isdir(out_path)):
 		shutil.rmtree(out_path)
 	os.mkdir(out_path)
