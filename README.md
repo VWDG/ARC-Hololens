@@ -1,4 +1,4 @@
-# ARC-H
+# ARC-Hololens
 
 Convert Data from [StreamRecorder](https://github.com/microsoft/HoloLens2ForCV/tree/main/Samples/StreamRecorder) for further use.
 
@@ -8,5 +8,4 @@ Convert Data from [StreamRecorder](https://github.com/microsoft/HoloLens2ForCV/t
 
 ## Usage and Examples
 
-<!-- may break if the branch is main -->
-- see [Wiki](../../wikis/home)
+- see [Wiki](-/wikis/home)
