@@ -8,4 +8,4 @@ Convert Data from [StreamRecorder](https://github.com/microsoft/HoloLens2ForCV/t
 
 ## Usage and Examples
 
-- see [Wiki](-/wikis/home)
+- see [Wiki](./wiki)
